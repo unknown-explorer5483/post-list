@@ -1,38 +1,222 @@
-.App {
-  text-align: center;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  color: #333;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
 }
+
+.post {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.post:hover {
+  transform: translateY(-5px);
+}
+
+.post h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.post p {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.post p.author {
+  font-style: italic;
+  color: #888;
+}
+
+.full-screen-post {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.full-screen-post .post-content {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+}
+
+.full-screen-post .post-content h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.full-screen-post .post-content p {
+  color: #666;
+}
+
+.full-screen-post .post-content .author {
+  font-style: italic;
+  color: #888;
+}
+
+.full-screen-post .post-content button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.full-screen-post .post-content button:hover {
+  background-color: #555;
+}
+
+.theme-switch {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 999;
+}
+
+.author-filter {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 999;
+}
+
+.author-select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.author-select:focus {
+  border-color: #333;
+}
+
+.dark .theme-switch {
+  background-color: #333;
+}
+
+.dark body {
+  background-color: #222; 
+  color: #fff; 
+}
+
+.dark .post {
+  background-color: #444;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.dark .post h3 {
+  color: #ffcc00;
+}
+
+.dark .post p {
+  color: #ccc;
+}
+
+.dark .post p.author {
+  color: #999;
+}
+
+.dark .full-screen-post .post-content {
+  background-color: #666;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.dark .full-screen-post .post-content h2 {
+  color: #ffcc00;
+}
+
+.dark .full-screen-post .post-content p {
+  color: #ccc;
+}
+
+.dark .full-screen-post .post-content .author {
+  color: #999;
+}
+
+.dark .full-screen-post .post-content button {
+  background-color: #ffcc00;
+  color: #222;
+}
+
+.dark .full-screen-post .post-content button:hover {
+  background-color: #ffdb4d;
+}
+
+.author-filter select {
+  appearance: none;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  color: #333;
+  cursor: pointer;
+}
+
+.author-filter select:focus {
+  outline: none;
+  border-color: #ffcc00; 
+}
+
+.author-filter select option {
+  background-color: #fff;
+  color: #333;
+}
+
+.author-filter select option:hover {
+  background-color: #ffcc00; 
+  color: #fff;
+}
+
+.author-filter::after {
+  content: '\25BE'; 
+  position: absolute;
+  top: calc(50% - 8px); 
+  right: 10px;
+  color: #333;
+  pointer-events: none; 
+}
+
