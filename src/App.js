@@ -43,7 +43,7 @@ function ThemeSwitch({ toggleTheme }) {
     );
 }
 
-function PostList() {
+export default function App() {
     const [posts, setPosts] = useState([]);
     const [selectedPost, setSelectedPost] = useState(null);
     const [darkTheme, setDarkTheme] = useState(false);
@@ -96,33 +96,25 @@ function PostList() {
         : posts;
 
     return (
-        <div className={`post-list ${darkTheme ? 'dark' : 'light'}`}>
-            <ThemeSwitch toggleTheme={toggleTheme} />
-            <div className="author-filter">
-                <select value={selectedAuthor} onChange={handleAuthorChange}>
-                    <option value="">All Authors</option>
-                    {authors.map(author => (
-                        <option key={author} value={author}>{author}</option>
-                    ))}
-                </select>
-            </div>
-            {filteredPosts.map(post => (
-                <Post key={post.id} post={post} onClick={handlePostClick} />
-            ))}
-            {selectedPost && (
-                <FullScreenPost post={selectedPost} onClose={handleCloseFullScreen} />
-            )}
-        </div>
-    );
-}
-
-function App() {
-    return (
-        <div className="app">
+        <div className={`app ${darkTheme ? 'dark' : 'light'}`}>
             <h1>Post List</h1>
-            <PostList />
+            <div className={`post-list ${darkTheme ? 'dark' : 'light'}`}>
+                <ThemeSwitch toggleTheme={toggleTheme} />
+                <div className="author-filter">
+                    <select value={selectedAuthor} onChange={handleAuthorChange}>
+                        <option value="">All Authors</option>
+                        {authors.map(author => (
+                            <option key={author} value={author}>{author}</option>
+                        ))}
+                    </select>
+                </div>
+                {filteredPosts.map(post => (
+                    <Post key={post.id} post={post} onClick={handlePostClick} />
+                ))}
+                {selectedPost && (
+                    <FullScreenPost post={selectedPost} onClose={handleCloseFullScreen} />
+                )}
+            </div>
         </div>
     );
 }
-
-export default App;
